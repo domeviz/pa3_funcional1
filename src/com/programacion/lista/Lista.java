@@ -220,6 +220,39 @@ public class Lista<T> {
     	
     }
     
+    //Right-To-Left
+    public <U> Lista<U> mapFoldRight(Function<T, U> fn) {
+		Lista<T> tmp = this;
+
+		Lista<U> retTmp = null;
+		if (tmp.tail != null) {
+			retTmp = new Lista<>(fn.apply(this.head));
+			return tmp.tail.invertir().foldRight(retTmp, x -> l -> l.append(fn.apply(x)));
+
+		} else {
+			return new Lista<U>(fn.apply(this.head));
+
+		}
+
+	}
+    
+    //Left-To-Right
+    public <U> Lista<U> mapFolfLeft(Function<T, U> fn) {
+    	Lista<T> tmp = this;
+
+		Lista<U> retTmp = null;
+		if (tmp.tail != null) {
+			retTmp = new Lista<>(fn.apply(this.head));
+			return tmp.tail.invertir().foldRight(retTmp, x -> l -> l.append(fn.apply(x)));
+
+		} else {
+			return new Lista<U>(fn.apply(this.head));
+
+		}
+
+	}
+
+    
     
     
 }
